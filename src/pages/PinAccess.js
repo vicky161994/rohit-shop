@@ -22,6 +22,7 @@ export default function PinAccess() {
         {error && <div className="error-message">{error}</div>}
         <h2>Enter PIN</h2>
         <input
+          id="passkey"
           type="password"
           maxLength="4"
           value={pin}
