@@ -1,0 +1,159 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff9c4; /* light yellow */
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+input, button {
+  padding: 10px;
+  margin: 5px;
+  font-size: 1rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;  
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;   /* enables horizontal scroll */
+}
+
+/* Responsive form */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+@media (min-width: 768px) {
+  .form-group {
+    flex-direction: row;
+    align-items: center;
+  }
+  .form-group input {
+    flex: 1;
+  }
+}
+
+/* Center PIN box */
+.pin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;   /* full screen height */
+  background: #f5f5f5;
+}
+
+.pin-box {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
+
+.pin-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.pin-box button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.error-message {
+  color: #fff;
+  background: #e74c3c; /* red background */
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between; /* search left, button right */
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.top-bar input {
+  flex: 1;
+  min-width: 200px;
+  margin-right: 10px;
+}
+
+.add-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #0056b3;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-actions {
+  margin-top: 20px;
+  text-align: center; /* centers the button */
+}
+
+.add-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #0056b3;
+}
