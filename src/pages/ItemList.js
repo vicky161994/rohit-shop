@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style.css";
+import { getItemList } from "../services/item";
+import { CircularProgress } from 'react-loader-spinner'
 
 export default function ItemList({ items }) {
   const [search, setSearch] = useState("");
+  const [itemList, setItemList] = useState([])
+  const [loading, setLoading] = useState(false)
 
-  const filteredItems = items.filter(
-    (item) =>
-      item.name.toLowerCase().includes(search.toLowerCase()) ||
-      item.sno.toString().includes(search),
-  );
+  useEffect(()=> {
+    async function fetchItems() {
+      setLoading(true);
+      const resp = await getItemList()
+      setLoading(false);
+      setItemList(resp)
+    }
+    fetchItems();
+  },[])
+
+  const filteredItems = itemList.filter(
+    (item) => item.name.toLowerCase().includes(search.toLowerCase()),);
 
   return (
     <div className="container">
@@ -40,14 +51,27 @@ export default function ItemList({ items }) {
             </tr>
           </thead>
           <tbody>
-            {filteredItems.map((item) => (
-              <tr key={item.sno}>
-                <td>{item.sno}</td>
+            {filteredItems.length === 0 && <tr><td colSpan={5}>No Data Found!</td></tr>}
+            {loading && <tr><td colSpan={5}><CircularProgress
+              height="100"
+              width="100"
+              color="#4fa94d"
+              ariaLabel="circular-progress-loading"
+              wrapperStyle={{}}
+              wrapperClass="wrapper-class"
+              visible={true}
+              strokeWidth={2}
+              animationDuration={1}
+              /></td></tr>
+            }
+            {filteredItems.map((item, i) => (
+              <tr key={item._id}>
+                <td>{i+1}</td>
                 <td>{item.name}</td>
-                <td>{item.cost}</td>
-                <td>{item.price}</td>
+                <td>{item.costPrice}</td>
+                <td>{item.sellingPrice}</td>
                 <td>
-                  <Link to={`/edit/${item.sno}`}>Edit</Link>
+                  <Link to={`/edit/${item._id}`}>Edit</Link>
                 </td>
               </tr>
             ))}

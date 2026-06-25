@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style.css";
+import { saveItem } from "../services/item";
+import { CircularProgress } from 'react-loader-spinner'
 
 export default function AddItem({ items, setItems }) {
   const [sno, setSno] = useState("");
@@ -8,9 +10,10 @@ export default function AddItem({ items, setItems }) {
   const [cost, setCost] = useState("");
   const [price, setPrice] = useState("");
   const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     // Validation
     let missingFields = [];
 
@@ -33,30 +36,22 @@ export default function AddItem({ items, setItems }) {
     }
 
     setError(""); // clear error if valid
-    setItems([
-      ...items,
-      {
-        sno: parseInt(sno),
-        name,
-        cost: parseInt(cost),
-        price: parseInt(price),
-      },
-    ]);
+    const payload = {
+      name: name,
+      costPrice: cost,
+      sellingPrice: price
+    }
+    setLoading(true)
+    const response = await saveItem(payload);
+    setLoading(false)
     navigate("/items");
+    
   };
 
   return (
     <div className="container">
       <h2>Add Item</h2>
       {error && <div className="error-message">{error}</div>}
-
-      <div className="form-group">
-        <input
-          placeholder="Sno"
-          value={sno}
-          onChange={(e) => setSno(e.target.value)}
-        />
-      </div>
       <div className="form-group">
         <input
           placeholder="Name"
@@ -78,6 +73,19 @@ export default function AddItem({ items, setItems }) {
           onChange={(e) => setPrice(e.target.value)}
         />
       </div>
+
+      {loading && <CircularProgress
+        height="100"
+        width="100"
+        color="#4fa94d"
+        ariaLabel="circular-progress-loading"
+        wrapperStyle={{}}
+        wrapperClass="wrapper-class"
+        visible={true}
+        strokeWidth={2}
+        animationDuration={1}
+        />
+      }
 
       <div className="form-actions">
         <button className="add-btn" onClick={handleAdd}>

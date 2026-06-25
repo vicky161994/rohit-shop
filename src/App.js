@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PinAccess />} />
         <Route path="/items" element={<ItemList items={items} setItems={setItems} />} />
-        <Route path="/edit/:sno" element={<EditItem items={items} setItems={setItems} />} />
+        <Route path="/edit/:itemId" element={<EditItem items={items} setItems={setItems} />} />
         <Route path="/add" element={<AddItem items={items} setItems={setItems} />} />
       </Routes>
     </Router>
