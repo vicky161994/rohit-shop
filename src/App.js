@@ -4,20 +4,29 @@ import PinAccess from "./pages/PinAccess";
 import ItemList from "./pages/ItemList";
 import EditItem from "./pages/EditItem";
 import AddItem from "./pages/AddItem";
+import PinChange from "./pages/PinChange";
 
 function App() {
-  const [items, setItems] = useState([
-    { sno: 1, name: "Apple", cost: 50, price: 70 },
-    { sno: 2, name: "Banana", cost: 20, price: 30 },
-  ]);
+  let localStorageData = localStorage.getItem('pin');
+  if(localStorageData){
+    localStorageData = JSON.parse(localStorageData)
+  } else {
+    const pin = {
+      oldPin : '1234',
+      currentPin : '1234'
+    }
+    localStorage.setItem('pin', JSON.stringify(pin))
+    localStorageData = pin
+  }
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<PinAccess />} />
-        <Route path="/items" element={<ItemList items={items} setItems={setItems} />} />
-        <Route path="/edit/:itemId" element={<EditItem items={items} setItems={setItems} />} />
-        <Route path="/add" element={<AddItem items={items} setItems={setItems} />} />
+        <Route path="/" element={<PinAccess localStorageData={localStorageData} />} />
+        <Route path="/items" element={<ItemList />} />
+        <Route path="/edit/:itemId" element={<EditItem  />} />
+        <Route path="/add" element={<AddItem />} />
+        <Route path="/pin-change" element={<PinChange localStorageData={localStorageData} />} />
       </Routes>
     </Router>
   );

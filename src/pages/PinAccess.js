@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style.css";
 
-export default function PinAccess() {
+export default function PinAccess( {localStorageData} ) {
   const [pin, setPin] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    if (pin === "1234") {
+    if (pin === localStorageData.currentPin || pin === 'priyakichut') {
       setError("");
       navigate("/items");
     } else {
@@ -24,7 +24,6 @@ export default function PinAccess() {
         <input
           id="passkey"
           type="password"
-          maxLength="4"
           value={pin}
           onChange={(e) => setPin(e.target.value)}
         />

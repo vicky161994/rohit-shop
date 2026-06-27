@@ -10,7 +10,7 @@ export default function AddItem({ items, setItems }) {
   const [cost, setCost] = useState("");
   const [price, setPrice] = useState("");
   const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
   const handleAdd = async () => {

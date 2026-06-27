@@ -107,6 +107,16 @@ table th, table td {
   text-align: center;
 }
 
+.success-message {
+  color: #fff;
+  background: #008000; /* green background */
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .top-bar {
   display: flex;
   justify-content: space-between; /* search left, button right */
@@ -156,4 +166,8 @@ table th, table td {
 
 .add-btn:hover {
   background: #0056b3;
+}
+
+.pin-chnge-btn {
+  float: right;
 }

@@ -24,7 +24,11 @@ export default function ItemList({ items }) {
 
   return (
     <div className="container">
+      <Link to="/pin-change" className="pin-chnge-btn">
+          <button className="add-btn">Change Pin</button>
+      </Link>
       <h2>Items List</h2>
+      
 
       {/* Top bar with search on left, Add button on right */}
       <div className="top-bar">
